@@ -20,6 +20,7 @@ import (
 	"strings"
 )
 
+// Key represents key of Tree.
 type Key interface {
 	// Compare gives the result of a 3-way comparison
 	// a.Compare(b) = 1 => a > b
@@ -28,6 +29,7 @@ type Key interface {
 	Compare(k Key) int
 }
 
+// Value represents the data stored in the nodes of Tree.
 type Value interface {
 	String() string
 }
@@ -63,10 +65,12 @@ type Tree struct {
 	size int
 }
 
+// NewTree creates a new instance of Tree.
 func NewTree() *Tree {
 	return &Tree{}
 }
 
+// Put puts the value of the given key.
 func (t *Tree) Put(k Key, v Value) Value {
 	t.root = t.put(t.root, k, v)
 	t.root.isRed = false
